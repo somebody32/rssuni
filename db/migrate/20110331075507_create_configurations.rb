@@ -1,0 +1,13 @@
+class CreateConfigurations < ActiveRecord::Migration
+  def self.up
+    create_table :configurations do |t|
+      t.datetime :rake_last_run
+    end
+    
+    Configuration.create(:rake_last_run => Time.now)
+  end
+
+  def self.down
+    drop_table :configurations
+  end
+end
