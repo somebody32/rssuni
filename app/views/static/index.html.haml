@@ -1,10 +1,10 @@
 %article
 	%p.all_articles
-		=link_to "Все статьи", articles_path(:format => :rss)
+		=link_to "Все статьи", "http://feeds.feedburner.com/iuni"
 	%p или по категориям:
 	%ul.categories
-		%li= link_to "Университет", articles_path(:format => :rss, :kind => "uni")
-		%li= link_to "Общество", articles_path(:format => :rss, :kind => "social")
-		%li= link_to "Дело", articles_path(:format => :rss, :kind => "science")
-		%li= link_to "Культура", articles_path(:format => :rss, :kind => "culture")
-		%li= link_to "Спорт", articles_path(:format => :rss, :kind => "sport")		
+		%li= link_to "Университет",	"http://feeds.feedburner.com/iuni_uni"
+		%li= link_to "Общество",		"http://feeds.feedburner.com/iuni_social"
+		%li= link_to "Дело",				"http://feeds.feedburner.com/iuni_science"
+		%li= link_to "Культура",		"http://feeds.feedburner.com/iuni_culture"
+		%li= link_to "Спорт", 			"http://feeds.feedburner.com/iuni_sport"
