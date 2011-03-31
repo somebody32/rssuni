@@ -1,0 +1,95 @@
+@import "compass/css3";
+@import "compass/typography/lists/horizontal-list";
+
+//-----------------------------------------------
+// The following html5-boilerplate styles should
+// probably be customized for each site
+//-----------------------------------------------
+
+body, select, input, textarea {
+  color: $font-color;
+  // Set your base font here, to apply evenly
+  // font-family: Georgia, serif;
+}
+
+//Headers (h1, h2, etc) have no default font-size or margin; define those yourself
+h1, h2, h3, h4, h5, h6 {
+  // Bold might not be the best choice if you are
+  // embedding a @font-face that's already bold
+  font-weight: bold;
+}
+
+a, a:active, a:visited { color: $link-color; }
+a:hover { color: $link-hover-color; }
+
+strong, th {
+  font-weight: bold;
+}
+
+small {
+  // Use font-size mixin to convert to percentage for YUI
+  // http://developer.yahoo.com/yui/3/cssfonts/#fontsize
+  @include font-size(11px);  // approx 85% when base-font-size eq 13px
+}
+
+// Add the 'required' attribute on your
+// inputs if you want to use these
+input:valid, textarea:valid {}
+input:invalid, textarea:invalid {
+  @include border-radius(1px);
+  @include box-shadow(red, 0, 0, 5px, 0);
+}
+.no-boxshadow input:invalid,
+.no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+
+//-----------------------------------
+// Add your own custom styles below
+//-----------------------------------
+
+body {
+	height: 100%;
+	background: #FCFCFC url(/images/background.png) repeat-x;
+}
+
+#container {
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	width: 980px;
+	margin: auto;
+  padding: 20px;
+}
+
+header {
+	width: 980px;
+  text-align: center;
+  font: 44px/50px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 0 2px 0 white;
+}
+
+#main {
+	text-align: center;
+	margin-top: 50px;
+	padding: 0px;
+}
+
+footer {
+	float: right;
+}
+
+.all_articles {
+	font-size: 220%;
+	margin-bottom: 15px;
+}
+
+.categories {
+	margin: 5px 0 30px 0;
+}
+
+.categories li {
+	display: inline;
+	list-style-type: none;
+	padding-left: 10px; 
+}

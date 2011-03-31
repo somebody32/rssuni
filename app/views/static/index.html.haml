@@ -1,0 +1,10 @@
+%article
+	%p.all_articles
+		=link_to "Все статьи", articles_path(:format => :rss)
+	%p или по категориям:
+	%ul.categories
+		%li= link_to "Университет", articles_path(:format => :rss, :kind => "uni")
+		%li= link_to "Общество", articles_path(:format => :rss, :kind => "social")
+		%li= link_to "Дело", articles_path(:format => :rss, :kind => "science")
+		%li= link_to "Культура", articles_path(:format => :rss, :kind => "culture")
+		%li= link_to "Спорт", articles_path(:format => :rss, :kind => "sport")		
