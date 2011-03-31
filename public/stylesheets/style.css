@@ -276,38 +276,37 @@ nav ul, nav li {
   visibility: hidden;
 }
 
-@import url(compass/typography/lists/horizontal-list.css);
-/* line 9, ../../app/stylesheets/partials/_page.scss */
+/* line 8, ../../app/stylesheets/partials/_page.scss */
 body, select, input, textarea {
   color: #444444;
 }
 
-/* line 16, ../../app/stylesheets/partials/_page.scss */
+/* line 15, ../../app/stylesheets/partials/_page.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-/* line 22, ../../app/stylesheets/partials/_page.scss */
+/* line 21, ../../app/stylesheets/partials/_page.scss */
 a, a:active, a:visited {
   color: #607890;
 }
 
-/* line 23, ../../app/stylesheets/partials/_page.scss */
+/* line 22, ../../app/stylesheets/partials/_page.scss */
 a:hover {
   color: #003366;
 }
 
-/* line 25, ../../app/stylesheets/partials/_page.scss */
+/* line 24, ../../app/stylesheets/partials/_page.scss */
 strong, th {
   font-weight: bold;
 }
 
-/* line 29, ../../app/stylesheets/partials/_page.scss */
+/* line 28, ../../app/stylesheets/partials/_page.scss */
 small {
   font-size: 85%;
 }
 
-/* line 38, ../../app/stylesheets/partials/_page.scss */
+/* line 37, ../../app/stylesheets/partials/_page.scss */
 input:invalid, textarea:invalid {
   -moz-border-radius: 1px;
   -webkit-border-radius: 1px;
@@ -321,19 +320,19 @@ input:invalid, textarea:invalid {
   box-shadow: red 0 0 5px 0;
 }
 
-/* line 43, ../../app/stylesheets/partials/_page.scss */
+/* line 42, ../../app/stylesheets/partials/_page.scss */
 .no-boxshadow input:invalid,
 .no-boxshadow textarea:invalid {
   background-color: #f0dddd;
 }
 
-/* line 50, ../../app/stylesheets/partials/_page.scss */
+/* line 49, ../../app/stylesheets/partials/_page.scss */
 body {
   height: 100%;
   background: #fcfcfc url(/images/background.png) repeat-x;
 }
 
-/* line 55, ../../app/stylesheets/partials/_page.scss */
+/* line 54, ../../app/stylesheets/partials/_page.scss */
 #container {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -344,7 +343,7 @@ body {
   padding: 20px;
 }
 
-/* line 65, ../../app/stylesheets/partials/_page.scss */
+/* line 64, ../../app/stylesheets/partials/_page.scss */
 header {
   width: 980px;
   text-align: center;
@@ -352,30 +351,30 @@ header {
   text-shadow: 0 2px 0 white;
 }
 
-/* line 72, ../../app/stylesheets/partials/_page.scss */
+/* line 71, ../../app/stylesheets/partials/_page.scss */
 #main {
   text-align: center;
   margin-top: 50px;
   padding: 0px;
 }
 
-/* line 78, ../../app/stylesheets/partials/_page.scss */
+/* line 77, ../../app/stylesheets/partials/_page.scss */
 footer {
   float: right;
 }
 
-/* line 82, ../../app/stylesheets/partials/_page.scss */
+/* line 81, ../../app/stylesheets/partials/_page.scss */
 .all_articles {
   font-size: 220%;
   margin-bottom: 15px;
 }
 
-/* line 87, ../../app/stylesheets/partials/_page.scss */
+/* line 86, ../../app/stylesheets/partials/_page.scss */
 .categories {
   margin: 5px 0 30px 0;
 }
 
-/* line 91, ../../app/stylesheets/partials/_page.scss */
+/* line 90, ../../app/stylesheets/partials/_page.scss */
 .categories li {
   display: inline;
   list-style-type: none;

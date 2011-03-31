@@ -9,5 +9,12 @@
   = render :partial => 'layouts/stylesheets'
   
   = javascript_include_tag 'modernizr.min'
+
+  = auto_discovery_link_tag(:rss, articles_url(:format => :rss), :title => "Все статьи")  
+  = auto_discovery_link_tag(:rss, articles_url(:format => :rss, :kind => "uni"), :title => "Университет")
+  = auto_discovery_link_tag(:rss, articles_url(:format => :rss, :kind => "social"),:title => "Общество")
+  = auto_discovery_link_tag(:rss, articles_url(:format => :rss, :kind => "science"),:title => "Дело")
+  = auto_discovery_link_tag(:rss, articles_url(:format => :rss, :kind => "culture"),:title => "Культура")
+  = auto_discovery_link_tag(:rss, articles_url(:format => :rss, :kind => "sport"), :title => "Спорт")
   
   = csrf_meta_tag
