@@ -4,7 +4,7 @@ class CreateConfigurations < ActiveRecord::Migration
       t.datetime :rake_last_run
     end
     
-    Configuration.create(:rake_last_run => Time.now)
+    Configuration.create(:rake_last_run => Time.now-1.hour)
   end
 
   def self.down

@@ -1,6 +1,6 @@
-require 'scrapper'
+require 'scraper'
 
 class ApplicationController < ActionController::Base
-  include Scrapper
+  include Scraper
   protect_from_forgery
 end

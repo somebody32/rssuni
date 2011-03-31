@@ -16,11 +16,7 @@ xml.rss :version => "2.0", :'xmlns:atom' => 'http://www.w3.org/2005/Atom' do
         xml.pubDate(article.created_at.to_s(:rfc822))
         xml.link("http://iuni.ru/articles/article/?articleId=#{article.link_id}")
         xml.guid(Date.today.to_s, :isPermaLink => false)
-        
-        xml.description do
-          xml << article.title
-        end
-        
+        xml.description(article.description)      
       end
     end
   end
