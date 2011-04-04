@@ -6,9 +6,10 @@ class ArticlesController < ApplicationController
     if %w(uni social science culture sport).include? params[:kind]
       @articles = Article.where(:kind => params[:kind])
     else
-      @articles = Article.all
+      @articles = Article
     end
     
+    @articles = @articles.order("created_at DESC")
     
     respond_to do |format|
       format.rss
