@@ -40,62 +40,44 @@
 		<script>
 			var iUni = {};
 			
-			iUni.WidgetStorage = (function() {
-				// Private
-				var data = {};
+			iUni.Widget = function(targetObject, config) {
+				this.targetObject = targetObject;
 				
-				return {	
-								
-					populateData: function(namespace) {
-						data[namespace] = [];
-						
-						$("#widgets > ." + namespace).each(function(index) {
-							data[namespace].push($(this).html());
-						});
-						
-						return data[namespace].length;
-					},
-					
-					getSlide: function(namespace, slideNumber) {
-						return data[namespace][slideNumber];
-					}
-				};			
-			})();
-			
-			iUni.Widget = function(namespace) {
-				this.namespace = namespace;
+				$.extend(this, config);
+					 
 				this.init();
 			};
 			
 			iUni.Widget.prototype = {
-				init: function() { 
-					this.currentSlide	= 0;  
-					this.slidesTotal	= iUni.WidgetStorage.populateData(this.namespace);
-					this.targetDiv		= $("#" + this.namespace);
-					this.contentDiv		= this.targetDiv.find(".body");
-					
-					this.targetDiv.find(".head > .arrows > .total").html(this.slidesTotal);
+				init: function() {
+					this.contentDiv 					= this.targetObject.find(this.widgetContentSelector);
+					this.currentSlideCounter 	= this.targetObject.find(this.currentCounterSelector);
+					this.slides 							= this.contentDiv.find(this.childSelector);
+
+					this.currentSlide = 0;
+					this.slidesTotal 	= this.slides.length;
+			
+					this.targetObject.find(this.totalCounterSelector).html(this.slidesTotal);
 					
 					var _this = this; 
-					this.targetDiv.find(".head > .arrows > .left").bind("click", function() {
+					this.targetObject.find(this.leftArrowSelector).bind("click", function() {
 						_this.previousSlide(_this);
 					});
-					this.targetDiv.find(".head > .arrows > .right").bind("click", function() {
+					this.targetObject.find(this.rightArrowSelector).bind("click", function() {
 						_this.nextSlide(_this);
-					});				
+					});
 						
 					this.switchSlide(this.currentSlide); // go for the first one
 				},
-				
-				setContent: function(newContent) {
-					this.contentDiv.html(newContent);
-					this.targetDiv.find(".head > .arrows > .curr").html(this.currentSlide + 1);
-				},
-				
+								
 				switchSlide: function(slideIndex) {
 					if (slideIndex < this.slidesTotal && slideIndex >= 0) {
+						this.slides.eq(this.currentSlide).hide();
+						
 						this.currentSlide = slideIndex;
-						this.setContent(iUni.WidgetStorage.getSlide(this.namespace, slideIndex));
+						this.slides.eq(slideIndex).show();
+						
+						this.currentSlideCounter.html(this.currentSlide + 1);
 					}
 				},
 				
@@ -111,9 +93,19 @@
 		
 		<script type="text/javascript">
 		VK.init({apiId: 1968069, onlyWidgets: true});
+		
 		$(document).ready(function() {
-			var FashionWidget		= new iUni.Widget("fashion");
-			var BusinessWidget	= new iUni.Widget("business");
+			var widgetConfig = {
+				totalCounterSelector: 	".head > .arrows > .total",
+				currentCounterSelector: ".head > .arrows > .curr",
+				leftArrowSelector: 			".head > .arrows > .left",
+				rightArrowSelector: 		".head > .arrows > .right",
+				childSelector: 					".slide",
+				widgetContentSelector: 	".body"
+			}
+			
+			var FashionWidget 	= new iUni.Widget($("#fashion"), widgetConfig);
+			var BusinessWidget	= new iUni.Widget($("#business"), widgetConfig);
 			FB.init({appId: '169996699689634', status: true, cookie: true, xfbml: true});
 		});	
 		</script>
@@ -307,6 +299,28 @@
 									</span>
 								</div>
 								<div class="body widget fashion">
+										<div class="slide hidden">
+											<h3><a class="txt-uline" href="#">Spring - Summer</a></h3>
+											<div class="img"><a href="#"><img src="http://static.iuni.ru/images/new_theme/test-imae-fashion.png" alt="" /></a></div>
+											<div class="foot">
+												<h4 class="font-it">Текст про весеннюю моду</h4>
+												<div class="info">
+													<div class="watches">
+														<span class="watches">450</span>
+														<span class="comments">65</span>
+													</div>
+													<div class="date"><span class="tags"></span>15 марта 2011</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="slide hidden">
+											some another news
+										</div>
+
+										<div class="slide hidden">
+											some cool fashion news
+										</div>
 								</div>
 							</div>
 							<div class="column colspan2 end fl-lt" id="business">
@@ -319,74 +333,47 @@
 									</span>
 								</div>
 								<div class="body widget business">
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div id="widgets" class="hidden">
-						<div class="fashion">
-							<h3><a class="txt-uline" href="#">Spring - Summer</a></h3>
-							<div class="img"><a href="#"><img src="http://static.iuni.ru/images/new_theme/test-imae-fashion.png" alt="" /></a></div>
-							<div class="foot">
-								<h4 class="font-it">Текст про весеннюю моду</h4>
-								<div class="info">
-									<div class="watches">
-										<span class="watches">450</span>
-										<span class="comments">65</span>
+									<div class="slide hidden">
+										<h3 class="diff"><span>Кто?</span><a class="txt-uline" href="#">Василий Иванович</a></h3>
+										<div class="img fl-lt"><a href="#"><img src="http://static.iuni.ru/images/new_theme/test-image-businness.png" alt="" /></a></div>
+										<div class="fl-lt whoiswho">
+											<p class="diff"><span>Что?</span>
+												В новой рубрике Esquire ученые рассказывают о научных идеях, которые должен знать каждый.
+											</p>
+											<p class="diff"><span>Сколько?</span>
+												В этом номере нобелевские лауреаты Фрэнк Вильчек и Даниэль Канеман объясняют, что такое скрытые слои.
+											</p>
+											<p class="diff"><span>Семейное положение?</span>
+												В активном поиске
+											</p>
+										</div>
+										<div class="clear"></div>
+										<div class="foot">
+											<div class="info">
+												<div class="watches">
+													<span class="watches">450</span>
+													<span class="comments">65</span>
+												</div>
+												<div class="date"><span class="tags"></span>15 марта 2011</div>
+											</div>
+										</div>
 									</div>
-									<div class="date"><span class="tags"></span>15 марта 2011</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="fashion">
-							some another news
-						</div>
-						
-						<div class="fashion">
-							some cool fashion news
-						</div>		
-						
-						<div class="business">
-							<h3 class="diff"><span>Кто?</span><a class="txt-uline" href="#">Василий Иванович</a></h3>
-							<div class="img fl-lt"><a href="#"><img src="http://static.iuni.ru/images/new_theme/test-image-businness.png" alt="" /></a></div>
-							<div class="fl-lt whoiswho">
-								<p class="diff"><span>Что?</span>
-									В новой рубрике Esquire ученые рассказывают о научных идеях, которые должен знать каждый.
-								</p>
-								<p class="diff"><span>Сколько?</span>
-									В этом номере нобелевские лауреаты Фрэнк Вильчек и Даниэль Канеман объясняют, что такое скрытые слои.
-								</p>
-								<p class="diff"><span>Семейное положение?</span>
-									В активном поиске
-								</p>
-							</div>
-							<div class="clear"></div>
-							<div class="foot">
-								<div class="info">
-									<div class="watches">
-										<span class="watches">450</span>
-										<span class="comments">65</span>
+
+									<div class="slide hidden">
+										business news #2 
 									</div>
-									<div class="date"><span class="tags"></span>15 марта 2011</div>
+
+									<div class="slide hidden">
+										business news #3
+									</div>
+
+									<div class="slide hidden">
+										business news #4
+									</div>
 								</div>
 							</div>
 						</div>
-						
-						<div class="business">
-							business news #2 
-						</div>
-						
-						<div class="business">
-							business news #3
-						</div>
-						
-						<div class="business">
-							business news #4
-						</div>				
-					</div>
-					
+					</div>					
 					<div class="column fl-lt banners end">
 						<div id="vk_groups"></div>
 						<script type="text/javascript">
